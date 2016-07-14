@@ -20,10 +20,16 @@
     var scripts = document.getElementsByTagName("script");
     return scripts[scripts.length - 1];
   })();
-  
+
   var embedDiv = currentScript.previousSibling;
 
   onLoad(function() {
-    Elm.embed(<%= raw module_name %>, embedDiv, <%= raw args.to_json %>);
+    module_name = <%= raw module_name %>;
+
+    module_name.embed(embedDiv
+      <% if !args.empty? %>
+        , <%= raw args.to_json %> 
+      <% end %>
+    );
   });
 })();
