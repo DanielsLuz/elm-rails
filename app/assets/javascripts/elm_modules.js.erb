@@ -1,1 +1,4 @@
 <%= Elm::Compiler.compile(Dir.glob("app/assets/elm/**/*.elm")).html_safe %>
+
+// Array used to track all embed elm objects
+var EmbedElmObjects = [];

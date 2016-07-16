@@ -1,8 +1,8 @@
 module ElmViewHelper
 
-  def elm_embed(module_name, args = {})
+  def elm_embed(module_name, elm_object_name)
     content_tag(:div) do
-      component_div + script_tag(module_name, args)
+      component_div + script_tag(module_name, elm_object_name)
     end
   end
 
@@ -12,9 +12,11 @@ module ElmViewHelper
     content_tag(:div) {}
   end
 
-  def script_tag(module_name, args)
+  def script_tag(module_name, elm_object_name)
     content_tag(:script, type: "text/javascript") do
-      render(file: "elm/mount_script.js.erb", locals: { module_name: module_name, args: args })
+      render(file: "elm/mount_script.js.erb", 
+             locals: { module_name: module_name,
+                       elm_object_name: elm_object_name })
     end
   end
 

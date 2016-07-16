@@ -24,12 +24,7 @@
   var embedDiv = currentScript.previousSibling;
 
   onLoad(function() {
-    module_name = <%= raw module_name %>;
-
-    module_name.embed(embedDiv
-      <% if !args.empty? %>
-        , <%= raw args.to_json %> 
-      <% end %>
-    );
+    elm_object = <%= module_name %>.embed(embedDiv);
+    EmbedElmObjects['<%= elm_object_name %>'] = elm_object;
   });
 })();
