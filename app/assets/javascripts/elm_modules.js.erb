@@ -1,4 +1,16 @@
 <%= Elm::Compiler.compile(Dir.glob("app/assets/elm/**/*.elm")).html_safe %>
 
-// Array used to track all embed elm objects
-var EmbedElmObjects = [];
+ElmWrapper = (function() {
+  var elmEmbedObjects = [];
+
+  return {
+    addObject: function(objectId, object){
+      elmEmbedObjects[objectId] = object;
+    },
+
+    getObject: function(objectId){
+      console.log("returning object " + objectId);
+      return elmEmbedObjects[objectId]
+    }
+  }
+})();

@@ -1,21 +1,4 @@
 (function() {
-  var onLoad = function(func) {
-    if (window.attachEvent) {
-      window.attachEvent('onload', yourFunctionName);
-    } else {
-      if (window.onload) {
-        var curronload = window.onload;
-        var newonload = function(evt) {
-          curronload(evt);
-          func(evt);
-        };
-        window.onload = newonload;
-      } else {
-        window.onload = func;
-      }
-    }
-  };
-
   var currentScript = document.currentScript || (function() {
     var scripts = document.getElementsByTagName("script");
     return scripts[scripts.length - 1];
@@ -23,8 +6,7 @@
 
   var embedDiv = currentScript.previousSibling;
 
-  onLoad(function() {
-    elm_object = <%= module_name %>.embed(embedDiv);
-    EmbedElmObjects['<%= elm_object_name %>'] = elm_object;
-  });
+  elmObject = <%= module_name %>.embed(embedDiv);
+
+  ElmWrapper.addObject("<%= elm_object_id %>", elmObject);
 })();
